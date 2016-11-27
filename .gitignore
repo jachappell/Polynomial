@@ -27,3 +27,8 @@
 *.exe
 *.out
 *.app
+example
+test
+
+# vim
+*.swp
