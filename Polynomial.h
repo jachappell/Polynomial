@@ -8,7 +8,7 @@
 
 #include <vector>
 
-template<class T> class Polynomial
+template<typename T> class Polynomial
 {
 public:
   Polynomial(typename std::vector<T>::size_type deg = 0);
@@ -29,15 +29,22 @@ public:
     coeff_.push_back(new_coeff);
   }
 
-  T& operator[](typename std::vector<T>::size_type idx);
-  const T& operator[](typename std::vector<T>::size_type idx) const;
+  T& operator[](typename std::vector<T>::size_type idx)
+  {
+    return coeff_.at(idx);
+  }
+
+  const T& operator[](typename std::vector<T>::size_type idx) const
+  {
+    return coeff_.at(idx);
+  }
 
 private:
   std::vector<T> coeff_;
 };
 
 
-template <class T> inline Polynomial<T>::Polynomial(const T *c,
+template <typename T> inline Polynomial<T>::Polynomial(const T *c,
     typename std::vector<T>::size_type deg) 
 {
   for (typename std::vector<T>::size_type i = 0 ; i <= deg; i++)
@@ -46,7 +53,7 @@ template <class T> inline Polynomial<T>::Polynomial(const T *c,
   }
 }
 
-template <class T> inline Polynomial<T>::Polynomial(
+template <typename T> inline Polynomial<T>::Polynomial(
       typename std::vector<T>::size_type deg)
 {
   for (typename std::vector<T>::size_type i = 0 ; i <= deg ; i++)
@@ -55,7 +62,7 @@ template <class T> inline Polynomial<T>::Polynomial(
   }
 }
 
-template <class T> inline T Polynomial<T>::operator()(const T &x) const
+template <typename T> inline T Polynomial<T>::operator()(const T &x) const
 {
   typename std::vector<T>::const_reverse_iterator rit = coeff_.rbegin();
 
@@ -66,18 +73,6 @@ template <class T> inline T Polynomial<T>::operator()(const T &x) const
   }
 
   return val;
-}
-
-template <class T> inline T& Polynomial<T>::operator[](
-    typename std::vector<T>::size_type idx)
-{
-  return coeff_.at(idx);
-}
-
-template <class T> inline const T& Polynomial<T>::operator[](
-    typename std::vector<T>::size_type idx) const
-{
-  return coeff_.at(idx);
 }
 
 #endif
