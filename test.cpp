@@ -1,5 +1,7 @@
 #include "Polynomial.h"
 
+#include <complex>
+
 #define BOOST_TEST_MODULE Polynomial
 #include <boost/test/included/unit_test.hpp>
 
@@ -82,4 +84,27 @@ BOOST_AUTO_TEST_CASE(increment_degree)
   BOOST_CHECK(p[1] == -1.0);
   BOOST_CHECK(p[2] == 3.0);
   BOOST_CHECK(p[3] == 12.0);
+}
+
+// increment degree
+BOOST_AUTO_TEST_CASE(complex_poly)
+{
+  Polynomial<complex<double> > p(2);
+  p[0] = 1.0;
+  p[1] = 0.0;
+  p[2] = 1.0;
+
+  BOOST_CHECK(p.degree() == 2);
+  BOOST_CHECK(p(1.0i) == 0.0);
+  
+  p.IncrementDegree();
+  BOOST_CHECK(p.degree() == 3);
+  BOOST_CHECK(p[3] == 0.0);
+
+  p[3] = 2.0 - 3.0i;
+
+  complex<double> result = p(2.0 + 1.0i);
+
+  BOOST_CHECK(result.real() == 41);
+  BOOST_CHECK(result.imag() == 20);
 }
