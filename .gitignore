@@ -27,7 +27,8 @@
 *.exe
 *.out
 *.app
-example
+example1
+example2
 test
 
 # vim

@@ -8,8 +8,11 @@
 See <a href="https://github.com/jachappell/Polynomial/blob/master/test.cpp">test.cpp</a> for more examples.
 </p>
 <p>
-To build the example:  make -f example.mak
+To build the examples:<br />
+$ make -f example1.mak
+$ make -f example2.mak
 </p>
 <p>
-To build the tests: make -f test.mak
+To build the tests:<br />
+$ make -f test.mak
 </p>
