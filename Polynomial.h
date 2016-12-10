@@ -7,6 +7,7 @@
 #define __POLYNOMIAL_H__
 
 #include <vector>
+#include <utility>
 
 template<typename T> class Polynomial
 {
@@ -18,6 +19,8 @@ public:
   Polynomial(const T c[], typename std::vector<T>::size_type deg);
 
   T operator()(const T& x) const;
+
+  std::pair<T, T> Evaluate(const T& x) const;
 
   typename std::vector<T>::size_type degree() const
   {
@@ -46,6 +49,7 @@ public:
 
 private:
   std::vector<T> coeff_;
+  static T eval(const T& y, const T&x, const T& c) { return (y * x) + c; }
 };
 
 
@@ -69,15 +73,33 @@ template <typename T> inline Polynomial<T>::Polynomial(
 
 template <typename T> inline T Polynomial<T>::operator()(const T &x) const
 {
-  typename std::vector<T>::const_reverse_iterator rit = coeff_.rbegin();
-
   T val(static_cast<T>(0));
+
+  typename std::vector<T>::const_reverse_iterator rit = coeff_.rbegin();
   for (; rit!= coeff_.rend() ; ++rit)
   {
-    val = (val * x) + *rit;
+    val = eval(val, x, *rit);
   }
 
   return val;
 }
+
+template <typename T> inline std::pair<T, T>
+    Polynomial<T>::Evaluate(const T& x)  const
+{
+  typename std::vector<T>::const_reverse_iterator rit = coeff_.rbegin();
+
+  T y(*rit++);
+  T dy(static_cast<T>(0));
+
+  for (; rit!= coeff_.rend() ; ++rit)
+  {
+    dy = eval(dy, x, y);
+    y = eval(y, x, *rit);
+  }
+
+  return std::make_pair(y, dy);
+}
+
 
 #endif

@@ -131,3 +131,25 @@ BOOST_AUTO_TEST_CASE(complex_poly)
   BOOST_CHECK(result.real() == 41);
   BOOST_CHECK(result.imag() == 20);
 }
+
+// Evaluate
+BOOST_AUTO_TEST_CASE(evaluate)
+{
+  vector<double> c;
+
+  c.push_back(2.0) ;
+  c.push_back(-1.0);
+  c.push_back(3.0) ;
+  Polynomial<double> f(c);
+
+  c.clear();
+  c.push_back(f[1]);
+  c.push_back(2.0 * f[2]);
+  Polynomial<double> fprime(c);
+
+  double x = 42.0;
+  std::pair<double, double> result = f.Evaluate(x);
+
+  BOOST_CHECK(result.first == f(x)); // y = f(x) 
+  BOOST_CHECK(result.second == fprime(x)); // dy/dx = f'(x)
+}
