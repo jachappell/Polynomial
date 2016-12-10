@@ -9,7 +9,7 @@ See <a href="https://github.com/jachappell/Polynomial/blob/master/test.cpp">test
 </p>
 <p>
 To build the examples:<br />
-$ make -f example1.mak
+$ make -f example1.mak<br />
 $ make -f example2.mak
 </p>
 <p>
