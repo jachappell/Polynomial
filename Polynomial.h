@@ -29,6 +29,11 @@ public:
     coeff_.push_back(new_coeff);
   }
 
+  void DecrementDegree(const T& new_coeff = static_cast<T>(0))
+  {
+    coeff_.pop_back();
+  }
+
   T& operator[](typename std::vector<T>::size_type idx)
   {
     return coeff_.at(idx);

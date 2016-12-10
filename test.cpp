@@ -76,9 +76,11 @@ BOOST_AUTO_TEST_CASE(increment_degree)
   c[2] = 3.0 ;
 
   Polynomial<double> p(c, 2) ;
+
   BOOST_CHECK(p.degree() == 2);
 
   p.IncrementDegree(12.0);
+
   BOOST_CHECK(p.degree() == 3);
   BOOST_CHECK(p[0] == 2);
   BOOST_CHECK(p[1] == -1.0);
@@ -86,7 +88,28 @@ BOOST_AUTO_TEST_CASE(increment_degree)
   BOOST_CHECK(p[3] == 12.0);
 }
 
-// increment degree
+// decrement degree
+BOOST_AUTO_TEST_CASE(decrement_degree)
+{
+  double c[3] ;
+
+  c[0] = 2.0 ;
+  c[1] = -1.0;
+  c[2] = 3.0 ;
+
+  Polynomial<double> p(c, 2);
+
+  BOOST_CHECK(p.degree() == 2);
+
+  p.DecrementDegree();
+
+  BOOST_CHECK(p.degree() == 1);
+  BOOST_CHECK(p[0] == 2);
+  BOOST_CHECK(p[1] == -1.0);
+  BOOST_CHECK_THROW(p[2], std::out_of_range);
+}
+
+// complex polynomial
 BOOST_AUTO_TEST_CASE(complex_poly)
 {
   Polynomial<complex<double> > p(2);
@@ -98,11 +121,11 @@ BOOST_AUTO_TEST_CASE(complex_poly)
   BOOST_CHECK(p(1.0i) == 0.0);
   
   p.IncrementDegree();
+
   BOOST_CHECK(p.degree() == 3);
   BOOST_CHECK(p[3] == 0.0);
 
   p[3] = 2.0 - 3.0i;
-
   complex<double> result = p(2.0 + 1.0i);
 
   BOOST_CHECK(result.real() == 41);
