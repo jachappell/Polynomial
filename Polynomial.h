@@ -73,9 +73,10 @@ template <typename T> inline Polynomial<T>::Polynomial(
 
 template <typename T> inline T Polynomial<T>::operator()(const T &x) const
 {
-  T val(static_cast<T>(0));
-
   typename std::vector<T>::const_reverse_iterator rit = coeff_.rbegin();
+
+  T val(*rit++);
+
   for (; rit!= coeff_.rend() ; ++rit)
   {
     val = eval(val, x, *rit);
