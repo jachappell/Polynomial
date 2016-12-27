@@ -12,7 +12,7 @@
 template<typename T> class Polynomial
 {
 public:
-  Polynomial(typename std::vector<T>::size_type deg)
+  Polynomial(typename std::vector<T>::size_type deg = 0)
       : coeff_(deg + 1, static_cast<T>(0)) {}
 
   Polynomial(const std::vector<T>& c) : coeff_(c) {}
@@ -52,8 +52,6 @@ public:
 private:
   std::vector<T> coeff_;
   static T eval(const T& y, const T&x, const T& c) { return (y * x) + c; }
-
-  Polynomial() {}
 };
 
 
