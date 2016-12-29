@@ -1,12 +1,12 @@
-PROG=example1
+PROG=test
 OBJDIR=.obj
 CC=g++
 
-CFLAGS = -Wall
+CFLAGS = -Wall -I ..
 
 $(shell mkdir -p $(OBJDIR)) 
 
-OBJS = $(OBJDIR)/example1.o
+OBJS = $(OBJDIR)/test.o
 
 $(PROG) : $(OBJS)
 	$(CC) $(OBJS) $(LDFLAGS) -o $(PROG)

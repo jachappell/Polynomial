@@ -2,7 +2,7 @@ PROG=example2
 OBJDIR=.obj
 CC=g++
 
-CFLAGS = -Wall
+CFLAGS = -Wall -I ..
 
 $(shell mkdir -p $(OBJDIR)) 
 
