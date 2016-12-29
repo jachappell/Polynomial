@@ -16,6 +16,6 @@ $ make -f example2.mak
 </p>
 <p>
 To build the tests:<br />
-$ cd tests
+$ cd tests<br />
 $ make
 </p>
