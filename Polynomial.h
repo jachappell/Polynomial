@@ -12,8 +12,8 @@
 template<typename T> class Polynomial
 {
 public:
-  Polynomial(typename std::vector<T>::size_type deg = 0)
-      : coeff_(deg + 1, static_cast<T>(0)) {}
+  Polynomial(const T& c = static_cast<T>(0),
+             typename std::vector<T>::size_type deg = 0) : coeff_(deg + 1, c) {}
 
   Polynomial(const std::vector<T>& c) : coeff_(c) {}
 

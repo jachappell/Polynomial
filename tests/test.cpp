@@ -1,6 +1,7 @@
 #include "Polynomial.h"
 
 #include <complex>
+#include <iostream>
 
 #define BOOST_TEST_MODULE Polynomial
 #include <boost/test/included/unit_test.hpp>
@@ -10,19 +11,19 @@ using namespace std;
 // 0 degree polynomial
 BOOST_AUTO_TEST_CASE(zero_degree)
 {
-  Polynomial<double> p0(0);
-  p0[0] = 42.0;
+  Polynomial<double> p0(42.0);
 
   BOOST_CHECK(p0.degree() == 0);
+  BOOST_CHECK(p0[0] == 42.0);
   BOOST_CHECK(p0(0.123) == 42.0);
 }
 
 // first degree polynomial
 BOOST_AUTO_TEST_CASE(first_degree)
 {
-  Polynomial<double> p1(1);
+  Polynomial<double> p1;
   p1[0] = -1.0;
-  p1[1] = 1.0;
+  p1.IncrementDegree(1.0);
 
   BOOST_CHECK(p1.degree() == 1);
   BOOST_CHECK(p1(0.0) == -1.0);
@@ -112,10 +113,10 @@ BOOST_AUTO_TEST_CASE(decrement_degree)
 // complex polynomial
 BOOST_AUTO_TEST_CASE(complex_poly)
 {
-  Polynomial<complex<double> > p(2);
+  Polynomial<complex<double> > p;
   p[0] = 1.0;
-  p[1] = 0.0;
-  p[2] = 1.0;
+  p.IncrementDegree(0.0);
+  p.IncrementDegree(1.0);
 
   BOOST_CHECK(p.degree() == 2);
   BOOST_CHECK(p(1.0i) == 0.0);
