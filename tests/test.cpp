@@ -21,9 +21,9 @@ BOOST_AUTO_TEST_CASE(zero_degree)
 // first degree polynomial
 BOOST_AUTO_TEST_CASE(first_degree)
 {
-  Polynomial<double> p1;
+  Polynomial<double> p1(0.0, 1);
   p1[0] = -1.0;
-  p1.IncrementDegree(1.0);
+  p1[1] = 1.0;
 
   BOOST_CHECK(p1.degree() == 1);
   BOOST_CHECK(p1(0.0) == -1.0);
