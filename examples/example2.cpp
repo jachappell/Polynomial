@@ -21,8 +21,9 @@ int main()
   // evaluate the polynomial and its derivative for a range of values
   for (double x = -10.0 ; x <= 10.0; x = x + 1.0)
   {
-    pair<double, double> y = f.Evaluate(x);
-    cout << "f(" << x << ") = " << y.first << ", f'(x) = " << y.second << endl;
+    double dy;
+    double y = f(x, dy);
+    cout << "f(" << x << ") = " << y << ", f'(" << x << ") = " << dy << endl;
   }
 
   return 0;
