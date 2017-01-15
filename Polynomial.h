@@ -7,7 +7,6 @@
 #define __POLYNOMIAL_H__
 
 #include <vector>
-#include <utility>
 
 template<typename T> class Polynomial
 {
@@ -21,8 +20,7 @@ public:
       : coeff_(c, c + deg + 1) {}
 
   T operator()(const T& x) const;
-
-  std::pair<T, T> Evaluate(const T& x) const;
+  T operator()(const T& x, T& dy) const;
 
   typename std::vector<T>::size_type degree() const
   {
@@ -34,7 +32,7 @@ public:
     coeff_.push_back(new_coeff);
   }
 
-  void DecrementDegree(const T& new_coeff = static_cast<T>(0))
+  void DecrementDegree()
   {
     coeff_.pop_back();
   }
@@ -69,13 +67,12 @@ template <typename T> inline T Polynomial<T>::operator()(const T &x) const
   return y;
 }
 
-template <typename T> inline std::pair<T, T>
-    Polynomial<T>::Evaluate(const T& x)  const
+template <typename T> inline T Polynomial<T>::operator()(const T& x, T& dy) const
 {
   typename std::vector<T>::const_reverse_iterator rit = coeff_.rbegin();
 
   T y(*rit++);
-  T dy(static_cast<T>(0));
+  dy = static_cast<T>(0);
 
   for (; rit!= coeff_.rend() ; ++rit)
   {
@@ -83,7 +80,7 @@ template <typename T> inline std::pair<T, T>
     y = eval(y, x, *rit);
   }
 
-  return std::make_pair(y, dy);
+  return y;
 }
 
 #endif

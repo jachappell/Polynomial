@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE(complex_poly)
 }
 
 // Evaluate
-BOOST_AUTO_TEST_CASE(evaluate)
+BOOST_AUTO_TEST_CASE(derivative)
 {
   vector<double> c;
 
@@ -149,8 +149,9 @@ BOOST_AUTO_TEST_CASE(evaluate)
   Polynomial<double> fprime(c);
 
   double x = 42.0;
-  std::pair<double, double> result = f.Evaluate(x);
+  double dydx;
+  double y = f(x, dydx);
 
-  BOOST_CHECK(result.first == f(x)); // y = f(x) 
-  BOOST_CHECK(result.second == fprime(x)); // dy/dx = f'(x)
+  BOOST_CHECK(y == f(x)); // y = f(x) 
+  BOOST_CHECK(dydx == fprime(x)); // dy/dx = f'(x)
 }
