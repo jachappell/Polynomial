@@ -19,10 +19,10 @@ int main()
   Polynomial<double> f(c, 4);
 
   // evaluate the polynomial and its derivative for a range of values
-  for (double x = -10.0 ; x <= 10.0; x = x + 1.0)
+  for (auto x = -10.0 ; x <= 10.0; x = x + 1.0)
   {
     double dy;
-    double y = f(x, dy);
+    auto y = f(x, dy);
     cout << "f(" << x << ") = " << y << ", f'(" << x << ") = " << dy << endl;
   }
 

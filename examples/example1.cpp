@@ -18,7 +18,7 @@ int main()
   Polynomial<double> poly(c, 3);
 
   // evaluate the polynomial for a range of values
-  for (double x = -10.0 ; x <= 10.0; x = x + 1.0)
+  for (auto x = -10.0 ; x <= 10.0; x = x + 1.0)
   {
     cout << "poly(" << x << ") = " << poly(x) << endl;
   }
