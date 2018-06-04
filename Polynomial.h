@@ -39,12 +39,12 @@ public:
 
   T& operator[](typename std::vector<T>::size_type idx)
   {
-    return coeff_.at(idx);
+    return coeff_[idx];
   }
 
   const T& operator[](typename std::vector<T>::size_type idx) const
   {
-    return coeff_.at(idx);
+    return coeff_[idx];
   }
 
 private:

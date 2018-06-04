@@ -107,7 +107,6 @@ BOOST_AUTO_TEST_CASE(decrement_degree)
   BOOST_CHECK(p.degree() == 1);
   BOOST_CHECK(p[0] == 2);
   BOOST_CHECK(p[1] == -1.0);
-  BOOST_CHECK_THROW(p[2], std::out_of_range);
 }
 
 // complex polynomial
