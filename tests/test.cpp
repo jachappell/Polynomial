@@ -7,6 +7,7 @@
 #include <boost/test/included/unit_test.hpp>
 
 using namespace std;
+using namespace Storage_B::Polynomials;
 
 // 0 degree polynomial
 BOOST_AUTO_TEST_CASE(zero_degree)

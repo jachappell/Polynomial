@@ -3,6 +3,7 @@
 #include <iostream>
 
 using namespace std;
+using namespace Storage_B::Polynomials;
 
 int main()
 {
