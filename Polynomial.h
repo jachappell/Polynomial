@@ -24,8 +24,8 @@ namespace Storage_B
       Polynomial(const T c[], typename std::vector<T>::size_type deg)
           : coeff_(c, c + deg + 1) {}
 
-      T operator()(const T& x) const;
-      T operator()(const T& x, T& dy) const;
+      auto operator()(const T& x) const;
+      auto operator()(const T& x, T& dy) const;
 
       auto degree() const
       {
@@ -42,12 +42,12 @@ namespace Storage_B
         coeff_.pop_back();
       }
 
-      T& operator[](typename std::vector<T>::size_type idx)
+      auto& operator[](typename std::vector<T>::size_type idx)
       {
         return coeff_[idx];
       }
 
-      const T& operator[](typename std::vector<T>::size_type idx) const
+      const auto& operator[](typename std::vector<T>::size_type idx) const
       {
         return coeff_[idx];
       }
@@ -61,7 +61,7 @@ namespace Storage_B
     };
 
 
-    template <typename T> inline T Polynomial<T>::operator()(const T &x) const
+    template <typename T> inline auto Polynomial<T>::operator()(const T &x) const
     {
       auto rit = std::rbegin(coeff_);
 
@@ -75,7 +75,7 @@ namespace Storage_B
       return y;
     }
 
-    template <typename T> inline T Polynomial<T>::operator()(const T& x, T& dy) const
+    template <typename T> inline auto Polynomial<T>::operator()(const T& x, T& dy) const
     {
       auto rit = std::rbegin(coeff_);
 
