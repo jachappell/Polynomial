@@ -24,6 +24,11 @@ namespace Storage_B
       Polynomial(const T c[], typename std::vector<T>::size_type deg)
           : coeff_(c, c + deg + 1) {}
 
+      Polynomial(const Polynomial<T>&) = default;
+      Polynomial<T>& operator=(const Polynomial<T>&) = default;
+
+      ~Polynomial() = default;
+
       auto operator()(const T& x) const;
       auto operator()(const T& x, T& dy) const;
 
