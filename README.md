@@ -11,8 +11,10 @@ See <a href="https://github.com/jachappell/Polynomial/blob/master/tests/test.cpp
 <p>
 To build the examples:<br />
 $ cd examples<br />
-$ make -f example1.mak<br />
-$ make -f example2.mak
+$ make<br />
+OR
+$ make example1<br />
+$ make example2
 </p>
 <p>
 To build the tests:<br />

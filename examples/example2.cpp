@@ -22,9 +22,9 @@ int main()
   // evaluate the polynomial and its derivative for a range of values
   for (auto x = -10.0 ; x <= 10.0; x = x + 1.0)
   {
-    double dy;
-    auto y = f(x, dy);
-    cout << "f(" << x << ") = " << y << ", f'(" << x << ") = " << dy << endl;
+    auto res = f.Eval(x);
+    cout << "f(" << x << ") = " << res.first
+         << ", f'(" << x << ") = " << res.second << endl;
   }
 
   return 0;

@@ -1,4 +1,5 @@
-PROG=example2
+PROG1=example1
+PROG2=example2
 OBJDIR=.obj
 CC=g++
 
@@ -6,10 +7,15 @@ CFLAGS = -Wall --std=c++14 -I ..
 
 $(shell mkdir -p $(OBJDIR)) 
 
-OBJS = $(OBJDIR)/example2.o
+all: $(PROG1) $(PROG2)
 
-$(PROG) : $(OBJS)
-	$(CC) $(OBJS) $(LDFLAGS) -o $(PROG)
+OBJS1 = $(OBJDIR)/example1.o
+OBJS2 = $(OBJDIR)/example2.o
+
+$(PROG1) : $(OBJS1)
+	$(CC) $(OBJS1) $(LDFLAGS) -o $(PROG1)
+$(PROG2) : $(OBJS2)
+	$(CC) $(OBJS2) $(LDFLAGS) -o $(PROG2)
 
 -include $(OBJS:.o=.d)
 
@@ -23,5 +29,5 @@ $(OBJDIR)/%.o: %.cpp
 	@rm -f $(OBJDIR)/$*.d.tmp
 
 clean:
-	rm -rf $(PROG) $(OBJDIR)
+	rm -rf $(PROG1) $(PROG2) $(OBJDIR)
 

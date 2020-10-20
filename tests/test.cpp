@@ -103,11 +103,12 @@ BOOST_AUTO_TEST_CASE(decrement_degree)
 
   BOOST_CHECK(p.degree() == 2);
 
-  p.DecrementDegree();
+  auto val = p.DecrementDegree();
 
   BOOST_CHECK(p.degree() == 1);
   BOOST_CHECK(p[0] == 2);
   BOOST_CHECK(p[1] == -1.0);
+  BOOST_CHECK(val == 3.0);
 }
 
 // complex polynomial
@@ -149,9 +150,9 @@ BOOST_AUTO_TEST_CASE(derivative)
   Polynomial<double> fprime(c);
 
   double x = 42.0;
-  double dydx;
-  double y = f(x, dydx);
+ 
+  auto res = f.Eval(x);
 
-  BOOST_CHECK(y == f(x)); // y = f(x) 
-  BOOST_CHECK(dydx == fprime(x)); // dy/dx = f'(x)
+  BOOST_CHECK(res.first == f(x)); // y = f(x) 
+  BOOST_CHECK(res.second == fprime(x)); // dy/dx = f'(x)
 }

@@ -30,7 +30,7 @@ namespace Storage_B
       ~Polynomial() = default;
 
       auto operator()(const T& x) const;
-      auto operator()(const T& x, T& dy) const;
+      std::pair<T, T> Eval(const T& x) const;
 
       auto degree() const
       {
@@ -42,9 +42,13 @@ namespace Storage_B
         coeff_.push_back(new_coeff);
       }
 
-      void DecrementDegree()
+      auto DecrementDegree()
       {
+        auto val = coeff_.back();
+
         coeff_.pop_back();
+
+        return val;
       }
 
       auto& operator[](typename std::vector<T>::size_type idx)
@@ -80,12 +84,13 @@ namespace Storage_B
       return y;
     }
 
-    template <typename T> inline auto Polynomial<T>::operator()(const T& x, T& dy) const
+    template <typename T> inline std::pair<T, T> 
+        Polynomial<T>::Eval(const T& x) const
     {
       auto rit = std::rbegin(coeff_);
 
       auto y(*rit++);
-      dy = static_cast<T>(0);
+      auto dy = static_cast<T>(0);
 
       for (; rit!= std::rend(coeff_) ; ++rit)
       {
@@ -93,7 +98,7 @@ namespace Storage_B
         y = eval(y, x, *rit);
       }
 
-      return y;
+      return std::make_pair(y, dy);
     }
   }
 }
