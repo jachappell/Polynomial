@@ -12,7 +12,7 @@ See <a href="https://github.com/jachappell/Polynomial/blob/master/tests/test.cpp
 To build the examples:<br />
 $ cd examples<br />
 $ make<br />
-OR
+OR<br />
 $ make example1<br />
 $ make example2
 </p>
