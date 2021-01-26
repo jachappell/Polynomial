@@ -3,8 +3,7 @@
 //
 // c++ class to evaluate polynomials
 //
-#ifndef STORAGE_B_POLYNOMIAL_H_
-#define STORAGE_B_POLYNOMIAL_H_
+#pragma once
 
 #include <vector>
 
@@ -25,12 +24,14 @@ namespace Storage_B
           : coeff_(c, c + deg + 1) {}
 
       Polynomial(const Polynomial<T>&) = default;
+      Polynomial(Polynomial<T>&&) = default;
       Polynomial<T>& operator=(const Polynomial<T>&) = default;
+      Polynomial<T>& operator=(Polynomial<T>&&) = default;
 
       ~Polynomial() = default;
 
       auto operator()(const T& x) const;
-      std::pair<T, T> Eval(const T& x) const;
+      auto eval(const T& x) const;
 
       auto degree() const
       {
@@ -84,8 +85,7 @@ namespace Storage_B
       return y;
     }
 
-    template <typename T> inline std::pair<T, T> 
-        Polynomial<T>::Eval(const T& x) const
+    template <typename T> inline auto Polynomial<T>::eval(const T& x) const
     {
       auto rit = std::rbegin(coeff_);
 
@@ -102,5 +102,3 @@ namespace Storage_B
     }
   }
 }
-
-#endif

@@ -19,7 +19,7 @@ $(PROG2) : $(OBJS2)
 
 -include $(OBJS:.o=.d)
 
-$(OBJDIR)/%.o: %.cpp
+$(OBJDIR)/%.o: %.cpp ../Polynomial.h
 	$(CC) -c $(CFLAGS) $*.cpp -o $(OBJDIR)/$*.o
 	$(CC) -MM $(CFLAGS) $*.cpp > $(OBJDIR)/$*.d
 	@mv -f $(OBJDIR)/$*.d $(OBJDIR)/$*.d.tmp

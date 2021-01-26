@@ -151,7 +151,7 @@ BOOST_AUTO_TEST_CASE(derivative)
 
   double x = 42.0;
  
-  auto res = f.Eval(x);
+  auto res = f.eval(x);
 
   BOOST_CHECK(res.first == f(x)); // y = f(x) 
   BOOST_CHECK(res.second == fprime(x)); // dy/dx = f'(x)
