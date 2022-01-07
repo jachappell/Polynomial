@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-using namespace std;
 using namespace Storage_B::Polynomials;
 
 int main()
@@ -23,8 +22,8 @@ int main()
   for (auto x = -10.0 ; x <= 10.0; x = x + 1.0)
   {
     auto res = f.eval(x);
-    cout << "f(" << x << ") = " << res.first
-         << ", f'(" << x << ") = " << res.second << endl;
+    std::cout << "f(" << x << ") = " << res.first
+         << ", f'(" << x << ") = " << res.second << '\n';
   }
 
   return 0;

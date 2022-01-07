@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-using namespace std;
 using namespace Storage_B::Polynomials;
 
 int main()
@@ -21,7 +20,7 @@ int main()
   // evaluate the polynomial for a range of values
   for (auto x = -10.0 ; x <= 10.0; x = x + 1.0)
   {
-    cout << "poly(" << x << ") = " << poly(x) << endl;
+    std::cout << "poly(" << x << ") = " << poly(x) << '\n';
   }
 
   return 0;
