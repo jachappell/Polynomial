@@ -9,7 +9,7 @@ int main()
 {
   // Create a 4th degree polynomial: x^4 + 2x^3 - 3x^2 + 4x + 1
 
-  double c[4];
+  double c[5];
 
   c[0] = 1.0;
   c[1] = 4.0;
