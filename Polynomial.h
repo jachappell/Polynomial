@@ -14,6 +14,12 @@ namespace Storage_B
     template<typename T> class Polynomial
     {
     public:
+      template<typename U> struct Result
+      {
+        U y;
+        U yp;
+      };
+
       Polynomial(const T& c = static_cast<T>(0),
                  typename std::vector<T>::size_type deg = 0)
         : coeff_(deg + 1, c) {}
@@ -31,7 +37,7 @@ namespace Storage_B
       ~Polynomial() = default;
 
       auto operator()(const T& x) const;
-      auto eval(const T& x) const;
+      Result<T> eval(const T& x) const;
 
       auto degree() const
       {
@@ -73,11 +79,11 @@ namespace Storage_B
 
     template <typename T> inline auto Polynomial<T>::operator()(const T &x) const
     {
-      auto rit = std::rbegin(coeff_);
+      auto rit = coeff_.rbegin();
 
       auto y(*rit++);
 
-      for (; rit!= std::rend(coeff_) ; ++rit)
+      for (; rit!= coeff_.rend() ; ++rit)
       {
         y = eval(y, x, *rit);
       }
@@ -85,20 +91,21 @@ namespace Storage_B
       return y;
     }
 
-    template <typename T> inline auto Polynomial<T>::eval(const T& x) const
+    template <typename T> inline Polynomial<T>::Result<T> Polynomial<T>::eval(
+          const T& x) const
     {
-      auto rit = std::rbegin(coeff_);
+      auto rit = coeff_.rbegin();
 
       auto y(*rit++);
       auto dy = static_cast<T>(0);
 
-      for (; rit!= std::rend(coeff_) ; ++rit)
+      for (; rit!= coeff_.rend() ; ++rit)
       {
         dy = eval(dy, x, y);
         y = eval(y, x, *rit);
       }
 
-      return std::make_pair(y, dy);
+      return {y, dy};
     }
   }
 }

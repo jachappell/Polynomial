@@ -22,8 +22,8 @@ int main()
   for (auto x = -10.0 ; x <= 10.0; x = x + 1.0)
   {
     auto res = f.eval(x);
-    std::cout << "f(" << x << ") = " << res.first
-         << ", f'(" << x << ") = " << res.second << '\n';
+    std::cout << "f(" << x << ") = " << res.y
+         << ", f'(" << x << ") = " << res.yp << '\n';
   }
 
   return 0;

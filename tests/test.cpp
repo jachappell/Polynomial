@@ -153,6 +153,6 @@ BOOST_AUTO_TEST_CASE(derivative)
  
   auto res = f.eval(x);
 
-  BOOST_CHECK(res.first == f(x)); // y = f(x) 
-  BOOST_CHECK(res.second == fprime(x)); // dy/dx = f'(x)
+  BOOST_CHECK(res.y == f(x)); // y = f(x) 
+  BOOST_CHECK(res.yp == fprime(x)); // dy/dx = f'(x)
 }
