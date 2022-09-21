@@ -23,7 +23,7 @@ int main()
   {
     auto res = f.eval(x);
     std::cout << "f(" << x << ") = " << res.y
-         << ", f'(" << x << ") = " << res.yp << '\n';
+         << ", f'(" << x << ") = " << res.dy << '\n';
   }
 
   return 0;

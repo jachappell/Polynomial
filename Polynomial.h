@@ -1,4 +1,3 @@
-//
 // Copyright (c) 2016 James A. Chappell (rlrrlrll@gmail.com)
 //
 // c++ class to evaluate polynomials
@@ -14,12 +13,6 @@ namespace Storage_B
     template<typename T> class Polynomial
     {
     public:
-      template<typename U> struct Result
-      {
-        U y;
-        U yp;
-      };
-
       Polynomial(const T& c = static_cast<T>(0),
                  typename std::vector<T>::size_type deg = 0)
         : coeff_(deg + 1, c) {}
@@ -37,7 +30,7 @@ namespace Storage_B
       ~Polynomial() = default;
 
       auto operator()(const T& x) const;
-      Result<T> eval(const T& x) const;
+      auto eval(const T& x) const;
 
       auto degree() const
       {
@@ -91,21 +84,20 @@ namespace Storage_B
       return y;
     }
 
-    template <typename T> inline Polynomial<T>::Result<T> Polynomial<T>::eval(
+    template <typename T> inline auto Polynomial<T>::eval(
           const T& x) const
     {
       auto rit = coeff_.rbegin();
 
-      auto y(*rit++);
-      auto dy = static_cast<T>(0);
+      struct { T y, dy; } res = { *rit++ , static_cast<T>(0) };
 
       for (; rit!= coeff_.rend() ; ++rit)
       {
-        dy = eval(dy, x, y);
-        y = eval(y, x, *rit);
+        res.dy = eval(res.dy, x, res.y);
+        res.y = eval(res.y, x, *rit);
       }
 
-      return {y, dy};
+      return res;
     }
   }
 }
