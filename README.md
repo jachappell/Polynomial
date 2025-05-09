@@ -9,15 +9,29 @@
 See <a href="https://github.com/jachappell/Polynomial/blob/master/tests/test.cpp">test.cpp</a> for more examples.
 </p>
 <p>
-To build the examples:<br />
-$ cd examples<br />
-$ make<br />
-OR<br />
-$ make example1<br />
-$ make example2
+To build the examples:
 </p>
-<p>
-To build the tests:<br />
-$ cd tests<br />
+<pre>
+$ mkdir build
+$ cd build
+$ cmake ..
 $ make
+</pre>
+<p>To run examples:<p>
+<pre>
+$ ./example1
+$ ./example2
+</pre>
+<p>
+To build the tests:
 </p>
+<pre>
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+</pre>
+<p>To run the tests:</p>
+<pre>
+./test
+</pre>

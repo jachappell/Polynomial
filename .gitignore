@@ -31,5 +31,7 @@ example1
 example2
 test
 
+build/
+
 # vim
 *.swp

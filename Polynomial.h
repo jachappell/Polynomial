@@ -13,11 +13,11 @@ namespace Storage_B
     template<typename T> class Polynomial
     {
     public:
-      Polynomial(const T& c = static_cast<T>(0),
-                 typename std::vector<T>::size_type deg = 0)
+      explicit Polynomial(const T& c = static_cast<T>(0),
+                          typename std::vector<T>::size_type deg = 0)
         : coeff_(deg + 1, c) {}
 
-      Polynomial(const std::vector<T>& c) : coeff_(c) {}
+      explicit Polynomial(const std::vector<T>& c) : coeff_(c) {}
 
       Polynomial(const T c[], typename std::vector<T>::size_type deg)
           : coeff_(c, c + deg + 1) {}
