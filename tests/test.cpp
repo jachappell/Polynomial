@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(second_degree)
   c[1] = -1.0;
   c[2] = 3.0 ;
 
-  Polynomial<double> p2(c, 2) ;
+  const Polynomial<double> p2(c, 2) ;
   
   BOOST_CHECK(p2.degree() == 2);
   BOOST_CHECK(p2(0.0) == 2.0);
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(third_degree)
   c.push_back(-2.0);
   c.push_back(3.0);
 
-  Polynomial<float> p3(c);
+  const Polynomial<float> p3(c);
   
   BOOST_CHECK(p3.degree() == 3);
   BOOST_CHECK(p3(0.0) == -1.0);
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE(decrement_degree)
 
   BOOST_CHECK(p.degree() == 2);
 
-  auto val = p.DecrementDegree();
+  const auto val = p.DecrementDegree();
 
   BOOST_CHECK(p.degree() == 1);
   BOOST_CHECK(p[0] == 2);
@@ -114,10 +114,10 @@ BOOST_AUTO_TEST_CASE(decrement_degree)
 // complex polynomial
 BOOST_AUTO_TEST_CASE(complex_poly)
 {
-  Polynomial<complex<double> > p;
+  Polynomial<complex<double>> p;
   p[0] = 1.0;
-  p.IncrementDegree(0.0);
-  p.IncrementDegree(1.0);
+  p.IncrementDegree(complex<double>(0.0, 0.0));
+  p.IncrementDegree(complex<double>(1.0, 0));
 
   BOOST_CHECK(p.degree() == 2);
   BOOST_CHECK(p(1.0i) == 0.0);
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE(complex_poly)
   BOOST_CHECK(p[3] == 0.0);
 
   p[3] = 2.0 - 3.0i;
-  complex<double> result = p(2.0 + 1.0i);
+  const complex<double> result = p(2.0 + 1.0i);
 
   BOOST_CHECK(result.real() == 41);
   BOOST_CHECK(result.imag() == 20);
@@ -147,11 +147,11 @@ BOOST_AUTO_TEST_CASE(derivative)
   c.clear();
   c.push_back(f[1]);
   c.push_back(2.0 * f[2]);
-  Polynomial<double> fprime(c);
+  const Polynomial<double> fprime(c);
 
   double x = 42.0;
- 
-  auto res = f.eval(x);
+
+  const auto res = f.eval(x);
 
   BOOST_CHECK(res.y == f(x)); // y = f(x) 
   BOOST_CHECK(res.dy == fprime(x)); // dy/dx = f'(x)
